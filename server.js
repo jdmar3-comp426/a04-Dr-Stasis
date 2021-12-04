@@ -30,7 +30,7 @@ app.post("/app/new/user", (req, res) => {
 	const stmt = db.prepare("INSERT INTO userinfo (user, pass) VALUES (?, ?)");
 	const info = stmt.run(req.body.user, md5(req.body.pass));
 	res.status(201).json({
-		message: `${info.changes} + record created: ID ${req.params.id} (201)`
+		message: `${info.changes} record created: ID ${req.params.id} (201)`
 	});
 });
 
@@ -53,7 +53,7 @@ app.patch("/app/update/user/:id", (req, res) => {
 	const stmt = db.prepare("UPDATE userinfo Set user = COALESCE(?,user), pass = COALESCE(?,pass) WHERE id = ?");
 	const info = stmt.run(req.body.user, md5(req.body.pass), req.params.id);
 	res.status(200).json({
-		message: `${info.changes} + record updated: ID ${req.params.id} (200)`
+		message: `${info.changes} record updated: ID ${req.params.id} (200)`
 	});
 });
 
@@ -62,7 +62,7 @@ app.delete("/app/delete/user/:id", (req, res) => {
 	const stmt = db.prepare("DELETE FROM userinfo WHERE id = ?");
 	const info = stmt.run(req.params.id);
 	res.status(200).json({
-		message: `${info.changes} + record deleted: ID ${req.params.id} (200)`
+		message: `${info.changes} record deleted: ID ${req.params.id} (200)`
 	});
 });
 
