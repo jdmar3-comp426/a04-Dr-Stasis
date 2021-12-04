@@ -30,7 +30,7 @@ app.post("/app/new/user", (req, res) => {
 	const stmt = db.prepare("INSERT INTO userinfo (user, pass) VALUES (?, ?)");
 	const info = stmt.run(req.body.user, md5(req.body.pass));
 	res.status(201).json({
-		message: `${info.changes} record created: ID ${req.params.id} (201)`
+		message: 'cheese'
 	});
 });
 
